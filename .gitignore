@@ -1,0 +1,69 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Build output (Vite / TanStack Start / Nitro)
+dist/
+dist-ssr/
+.output/
+.nitro/
+.tanstack/
+.vinxi/
+.vite/
+*.local
+
+# Deployment platforms
+.vercel/
+.netlify/
+.wrangler/
+
+# Environment variables (keep a committed .env.example if needed)
+.env
+.env.*
+!.env.example
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+bun-debug.log*
+
+# Caches
+.cache/
+.eslintcache
+.stylelintcache
+*.tsbuildinfo
+coverage/
+
+# Lockfiles from other package managers (this project uses bun.lock)
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# macOS (includes ._* AppleDouble files created on external drives)
+.DS_Store
+._*
+.AppleDouble
+.LSOverride
+.Spotlight-V100
+.Trashes
+
+# Windows / Linux
+Thumbs.db
+desktop.ini
+*~
+
+# Editors
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+*.swp
+*.swo
+
+# Local AI tooling
+.claude/settings.local.json

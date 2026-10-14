@@ -1,0 +1,267 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Design system — "Minhal Javed / Creative Developer"
+ * Near-black cinematic base, single acid-green accent, editorial type.
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 2px);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 2px);
+  --radius-xl: calc(var(--radius) + 6px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-haze: var(--haze);
+  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+:root {
+  --radius: 0.25rem;
+  --background: oklch(0.14 0.008 260);
+  --foreground: oklch(0.96 0.005 260);
+  --card: oklch(0.17 0.008 260);
+  --card-foreground: oklch(0.96 0.005 260);
+  --popover: oklch(0.17 0.008 260);
+  --popover-foreground: oklch(0.96 0.005 260);
+  --primary: oklch(0.88 0.24 132);
+  --primary-foreground: oklch(0.16 0.02 140);
+  --secondary: oklch(0.24 0.008 260);
+  --secondary-foreground: oklch(0.96 0.005 260);
+  --muted: oklch(0.22 0.006 260);
+  --muted-foreground: oklch(0.66 0.01 260);
+  --accent: oklch(0.88 0.24 132);
+  --accent-foreground: oklch(0.16 0.02 140);
+  --destructive: oklch(0.62 0.21 27);
+  --destructive-foreground: oklch(0.98 0.003 260);
+  --border: oklch(1 0 0 / 12%);
+  --input: oklch(1 0 0 / 14%);
+  --ring: oklch(0.88 0.24 132 / 60%);
+  --haze: oklch(0.75 0.09 200);
+
+  --glow-accent: 0 0 40px color-mix(in oklab, var(--primary) 45%, transparent);
+  --glow-soft: 0 0 120px color-mix(in oklab, var(--primary) 14%, transparent);
+  --gradient-pitch: radial-gradient(
+    120% 80% at 50% 12%,
+    color-mix(in oklab, var(--haze) 12%, transparent) 0%,
+    transparent 60%
+  );
+  --ease-cine: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dark {
+  color-scheme: dark;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: var(--primary);
+    color: var(--primary-foreground);
+  }
+}
+
+@utility grain {
+  position: relative;
+}
+
+@utility label {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+
+@utility display-xl {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.045em;
+  line-height: 0.86;
+  font-size: clamp(3rem, 12vw, 12rem);
+}
+
+@utility display-lg {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 0.92;
+  font-size: clamp(2.25rem, 7vw, 6rem);
+}
+
+@utility display-md {
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1.02;
+  font-size: clamp(1.6rem, 3.6vw, 3rem);
+}
+
+@utility accent-glow {
+  text-shadow: var(--glow-accent);
+}
+
+@utility hairline {
+  border-top: 1px solid var(--border);
+}
+
+/* Intro logo — SVG line-drawing reveal (see IntroLogo). --length/--duration/
+   --delay come in via inline style, set from precomputed constants at first
+   render (not measured post-mount), so the draw timing is correct immediately. */
+.intro-logo__draw-line {
+  fill: none;
+  stroke: var(--color-primary);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: var(--length);
+  stroke-dashoffset: var(--length);
+  filter: drop-shadow(0 0 5px color-mix(in oklab, var(--primary) 45%, transparent));
+  animation: intro-logo-draw var(--duration) var(--ease-cine) var(--delay) forwards;
+}
+
+@keyframes intro-logo-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* iOS-style Liquid Glass: a blurred + lens-warped backdrop layer, a
+   translucent tint, and a specular edge-highlight, stacked under the real
+   nav content — same recipe as Apple's, not just a flat backdrop-blur. */
+.glass-nav {
+  --lg-tint: color-mix(in oklab, var(--background) 55%, transparent);
+  --lg-highlight: color-mix(in oklab, white 24%, transparent);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.glass-nav__filter,
+.glass-nav__overlay,
+.glass-nav__specular {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.glass-nav__filter {
+  z-index: 0;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  filter: url(#glass-nav-lens) saturate(160%) brightness(1.08);
+}
+
+.glass-nav__overlay {
+  z-index: 1;
+  background: var(--lg-tint);
+}
+
+.glass-nav__specular {
+  z-index: 2;
+  box-shadow:
+    inset 0 1px 0 0 var(--lg-highlight),
+    inset 0 0 1px 0 var(--lg-highlight),
+    0 1px 32px -12px color-mix(in oklab, black 80%, transparent);
+}
+
+.glass-nav__content {
+  position: relative;
+  z-index: 3;
+}
+
+/* Browsers without backdrop-filter support get a solid tint instead of a
+   see-through header — the "hide content behind it" requirement still holds. */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .glass-nav__overlay {
+    background: color-mix(in oklab, var(--background) 94%, transparent);
+  }
+}
+
+/* Film grain overlay */
+.grain-overlay {
+  pointer-events: none;
+  position: fixed;
+  inset: -50%;
+  z-index: 60;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: grain-shift 900ms steps(3) infinite;
+}
+
+@keyframes grain-shift {
+  0% {
+    transform: translate(0, 0);
+  }
+  33% {
+    transform: translate(-2%, 1%);
+  }
+  66% {
+    transform: translate(1%, -2%);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.85);
+    opacity: 0.65;
+  }
+  70% {
+    transform: scale(1.35);
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.pulse-ring {
+  animation: pulse-ring 2.4s var(--ease-cine) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .grain-overlay,
+  .pulse-ring {
+    animation: none;
+  }
+}
