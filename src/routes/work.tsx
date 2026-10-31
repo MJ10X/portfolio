@@ -45,7 +45,7 @@ const EXPERIENCE = [
   {
     org: "Useryze",
     role: "Software Engineer",
-    period: "August 2025 - Present",
+    period: "August 2025 - October 2026",
     location: "US-based, remote",
   },
   {
